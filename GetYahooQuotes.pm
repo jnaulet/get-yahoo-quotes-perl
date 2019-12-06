@@ -40,7 +40,7 @@ sub get_crumb
     $curl->perform;
     
     # Extract CrumbStore
-    (my $crumb) = $data =~ m/{"crumb":"([a-zA-Z0-9\.]*)"}/g;
+    (my $crumb) = $data =~ m/{"crumb":"([a-zA-Z0-9\\\.]*)"}/g;    
     return $crumb;
 }
 
