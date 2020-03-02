@@ -40,7 +40,8 @@ sub get_crumb
     $curl->perform;
     
     # Extract CrumbStore
-    (my $crumb) = $data =~ m/{"crumb":"([a-zA-Z0-9\\\.]*)"}/g;    
+    my ($crumb) = $data =~ m/{"crumb":"([^"]+)"}/g;
+    $crumb =~ s#\\u002F#/#g; # Fix utf8-encoded / in crumb
     return $crumb;
 }
 
